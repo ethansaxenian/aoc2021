@@ -86,8 +86,6 @@ h = []
 
 heapq.heappush(h, source)
 
-heapq.heapify(graph)
-
 while True:
     u = heapq.heappop(h)
     u.visited = True
