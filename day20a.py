@@ -6,11 +6,6 @@ SYMBOL_TO_BIT = {
     "#": "1"
 }
 
-BOOL_TO_SYMBOL = {
-    False: ".",
-    True: "#"
-}
-
 
 def add_blanks(grid, c):
     for row in grid:
@@ -54,7 +49,7 @@ if __name__ == '__main__':
     on = False
     for _ in range(2):
         for _ in range(3):
-            add_blanks(output, BOOL_TO_SYMBOL[on])
+            add_blanks(output, "#" if on else ".")
         g = enhance(g, algorithm)
         on = not on
 
