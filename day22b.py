@@ -13,6 +13,9 @@ class Cube:
     z2: int
     on: bool
 
+    def __hash__(self):
+        return hash((*self.bounds(), self.on))
+
     def volume(self):
         return (self.x2 - self.x1 + 1) * (self.y2 - self.y1 + 1) * (self.z2 - self.z1 + 1)
 
@@ -34,7 +37,7 @@ class Cube:
         return Cube(ix1, ix2, iy1, iy2, iz1, iz2, not self.on)
 
 
-cubes = []
+cubes = set()
 
 for d, cs in lines:
     on = d == "on"
@@ -47,10 +50,10 @@ for d, cs in lines:
     for old_cube in cubes[:]:
         intersect = old_cube.calculate_intersect(new_cube)
         if intersect is not None:
-            cubes.append(intersect)
+            cubes.add(intersect)
 
     if new_cube.on:
-        cubes.append(new_cube)
+        cubes.add(new_cube)
 
 total = 0
 for cube in cubes:
