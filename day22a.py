@@ -10,7 +10,6 @@ for d, cs in lines:
     y1, y2 = map(int, ys.removeprefix("y=").split(".."))
     z1, z2 = map(int, zs.removeprefix("z=").split(".."))
     if any(abs(i) > 50 for i in [x1, x2, y1, y2, z1, z2]):
-        print("skipping")
         continue
     for x in range(x1 + 50, x2 + 51):
         for y in range(y1 + 50, y2 + 51):

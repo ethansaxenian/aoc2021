@@ -14,7 +14,7 @@ class Cube:
     on: bool
 
     def volume(self):
-        return (self.x2 - self.x1) * (self.y2 - self.y1) * (self.z2 - self.z1) * (1 if self.on else -1)
+        return (self.x2 - self.x1 + 1) * (self.y2 - self.y1 + 1) * (self.z2 - self.z1 + 1)
 
     def bounds(self):
         return self.x1, self.x2, self.y1, self.y2, self.z1, self.z2
@@ -31,7 +31,7 @@ class Cube:
         iz1 = max(z1, self.z1)
         iz2 = min(z2, self.z2)
 
-        return Cube(ix1, ix2, iy1, iy2, iz1, iz2, False)
+        return Cube(ix1, ix2, iy1, iy2, iz1, iz2, not self.on)
 
 
 cubes = []
@@ -47,14 +47,13 @@ for d, cs in lines:
     for old_cube in cubes[:]:
         intersect = old_cube.calculate_intersect(new_cube)
         if intersect is not None:
-            if old_cube.on:
-                cubes.append(intersect)
+            cubes.append(intersect)
 
     if new_cube.on:
         cubes.append(new_cube)
 
 total = 0
 for cube in cubes:
-    total += cube.volume()
+    total += cube.volume() * (1 if cube.on else -1)
 
 print(total)
