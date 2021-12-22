@@ -42,6 +42,7 @@ for d, cs in lines:
     x1, x2 = list(map(int, xs.removeprefix("x=").split("..")))
     y1, y2 = list(map(int, ys.removeprefix("y=").split("..")))
     z1, z2 = list(map(int, zs.removeprefix("z=").split("..")))
+
     new_cube = Cube(x1, x2, y1, y2, z1, z2, on)
     for old_cube in cubes[:]:
         intersect = old_cube.calculate_intersect(new_cube)
