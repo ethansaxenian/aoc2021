@@ -1,3 +1,4 @@
+from copy import deepcopy
 from dataclasses import dataclass
 
 lines = [l.strip().split() for l in open("day22_input.txt", "r").readlines()]
@@ -47,7 +48,7 @@ for d, cs in lines:
     z1, z2 = list(map(int, zs.removeprefix("z=").split("..")))
 
     new_cube = Cube(x1, x2, y1, y2, z1, z2, on)
-    for old_cube in cubes[:]:
+    for old_cube in deepcopy(cubes):
         intersect = old_cube.calculate_intersect(new_cube)
         if intersect is not None:
             cubes.add(intersect)
